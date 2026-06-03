@@ -1,3 +1,5 @@
+if not game:IsLoaded() then game.Loaded:Wait() end
+
 local reg = debug.getregistry()
 
 for _, thread in next, reg do
