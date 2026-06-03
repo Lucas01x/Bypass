@@ -4,7 +4,7 @@ local SpooferUpvalue = function(func)
     for i, v in next, getupvalues(func) do
         if typeof(v) == 'function' then
             SpooferUpvalue(v)
-			print(v)
+			-- print(v)
         end
         setupvalue(func, i, wait)
     end
