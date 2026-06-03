@@ -1,5 +1,16 @@
 if not game:IsLoaded() then game.Loaded:Wait() end
 
+local SpooferUpvalue = function(func)
+    for i, v in next, getupvalues(func) do
+        if typeof(v) == 'function' then
+            SpooferUpvalue(v)
+			print(v)
+        end
+        setupvalue(func, i, wait)
+    end
+end
+
+
 if not workspace:GetAttribute("Map") then
     -- game:GetService("Players").Lucasd43200.PlayerScripts.Baka
 
@@ -13,7 +24,8 @@ if not workspace:GetAttribute("Map") then
             if info and tostring(info.source):find("Baka") then
                 print("Debug :", obj, info.source) 
                 print(info.name)
-                hookfunction(obj, error("Lucas OnTop" , 1));
+                -- hookfunction(obj, error("Lucas OnTop" , 1));
+                SpooferUpvalue(obj)
                 -- SpooferUpvalue(obj)
             end
         end
